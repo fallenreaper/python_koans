@@ -18,6 +18,15 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
+    if ( a<=0 or b<=0 or c <= 0):
+        raise TriangleError, "Invalid Arguments. Side(s) Can't be Zero"
+
+    sides = sorted([a,b,c])
+    long = sides.pop()
+    lega,legb=sides
+    if (not(a+b>c and a+c>b and b+c>a)):
+        raise TriangleError, "Invalid Dimensions."
+
     # DELETE 'PASS' AND WRITE THIS CODE
     if(a==b and b==c): return "equilateral"
     if(a==b or b==c or a==c): return "isosceles"
