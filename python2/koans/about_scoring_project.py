@@ -35,7 +35,29 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    #pass
+    score = 0
+    lst = [item for item in dice if item == 1]
+    #tri-1s
+    if (len(lst) >= 3):
+        #mod = len(lst) % 3
+        #whole = len(lst) // 3
+        #dice = dice[3*whole - 1:]
+        for x in [tmp for tmp in [1,1,1] if tmp in dice]:
+            dice.remove(x)
+        score += 1000
+    #tri-any
+    for i in range(2,7):
+        lst = [item for item in dice if item == i]
+        if( len(lst) >= 3):
+            for x in [tmp for tmp in [i,i,i] if tmp in dice]:
+                dice.remove(x)
+            score+= i*100
+    if (1 in dice):
+        score += 100*len([x for x in dice if x == 1])
+    if (5 in dice):
+        score += 50*len([x for x in dice if x == 5])
+    return score
 
 
 class AboutScoringProject(Koan):
